@@ -21,6 +21,15 @@
 </template>
 
 <script setup lang="ts">
+const route = useRoute()
 const drawer = ref(false)
+
+// Следим за изменением маршрута
+watch(
+    () => route.path,
+    () => {
+      drawer.value = false // Закрываем drawer при смене роута
+    }
+)
 
 </script>
