@@ -1,20 +1,26 @@
-<script setup lang="ts">
-
-</script>
-
+<!-- layouts/default.vue -->
 <template>
-  <div>
-<Header/>
-      <div class="text-3xl font-bold underline">fafa </div>
-      <el-row class="mb-4 color bg-red-200 text" >
-        <el-col :span="24">
-          <div class="grid-content ep-bg-purple-dark" />
-        </el-col>
-      </el-row>
+  <div class="common-layout">
+    <el-container>
+      <el-header>
 
-    <slot />
+        <span class="block md:hidden"><el-button type="primary"  @click="drawer = true"> open </el-button></span>
+        <el-drawer v-model="drawer" direction="ltr" title="Главная" size="40%" resizable :with-header="false">
+          <Navigation />
+        </el-drawer>
+      </el-header>
+      <el-container>
+          <Navigation class="hidden md:block"/>
+
+        <el-main>
+          <slot></slot>
+        </el-main>
+      </el-container>
+    </el-container>
   </div>
 </template>
 
-<style>
-</style>
+<script setup lang="ts">
+const drawer = ref(false)
+
+</script>

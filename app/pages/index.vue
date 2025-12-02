@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h1>Добро пожаловать!</h1>
-        <p>Это ваша главная страница</p>
-    </div>
+Главная
 </template>
+<script setup lang="ts">
+
+</script>

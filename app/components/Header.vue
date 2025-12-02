@@ -1,9 +1,7 @@
 <script setup lang="ts">
-const text = ref('')
+const drawer = ref(false)
 </script>
 
 <template>
-<div class="bg-red-200">
 
-</div>
 </template>
