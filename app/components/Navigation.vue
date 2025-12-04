@@ -1,41 +1,41 @@
 <script lang="ts" setup>
-import {ref} from 'vue'
 import {
-  Home,           // для главной
-  Dumbbell,       // для раздела тренировок
-  List,           // для списка тренировок
-  PlusCircle,     // для добавления тренировки
-} from 'lucide-vue-next';
+  Dumbbell, // для раздела тренировок
+  Home, // для главной
+  List, // для списка тренировок
+  PlusCircle, // для добавления тренировки
+} from 'lucide-vue-next'
+import { ref } from 'vue'
 
-const isCollapse = ref(false)
-const props = withDefaults(defineProps<{
-  mode?: 'horizontal' | 'vertical',
+withDefaults(defineProps<{
+  mode?: 'horizontal' | 'vertical'
 }>(), {
-  mode: 'vertical'
+  mode: 'vertical',
 })
+const isCollapse = ref(false)
 </script>
-
 
 <template>
   <div class="flex flex-col transform translate-0">
-
     <el-menu
-        :collapse="isCollapse"
-        class="!border-none"
-        default-active="1"
-        :mode = "mode"
-        router
+      :collapse="isCollapse"
+      class="!border-none"
+      default-active="1"
+      :mode="mode"
+      router
     >
       <el-menu-item index="/">
         <el-icon>
-          <Home/>
+          <Home />
         </el-icon>
-        <template #title>Главная</template>
+        <template #title>
+          Главная
+        </template>
       </el-menu-item>
       <el-sub-menu index="1">
         <template #title>
           <el-icon>
-            <Dumbbell/>
+            <Dumbbell />
           </el-icon>
           <span>Тренировки</span>
         </template>
@@ -43,22 +43,22 @@ const props = withDefaults(defineProps<{
           <el-icon>
             <List />
           </el-icon>
-          <template #title>Тренировки</template>
+          <template #title>
+            Тренировки
+          </template>
         </el-menu-item>
         <el-menu-item index="/workouts/add">
           <el-icon>
             <PlusCircle />
           </el-icon>
-          <template #title>Добавить тренировку</template>
+          <template #title>
+            Добавить тренировку
+          </template>
         </el-menu-item>
       </el-sub-menu>
-
     </el-menu>
   </div>
-
 </template>
-
-
 
 <style>
 
