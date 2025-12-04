@@ -1,38 +1,53 @@
+<script lang="ts" setup>
+import {ref} from 'vue'
+import {
+  Home,           // для главной
+  Dumbbell,       // для раздела тренировок
+  List,           // для списка тренировок
+  PlusCircle,     // для добавления тренировки
+} from 'lucide-vue-next';
+
+const isCollapse = ref(false)
+const props = withDefaults(defineProps<{
+  mode?: 'horizontal' | 'vertical',
+}>(), {
+  mode: 'vertical'
+})
+</script>
+
+
 <template>
   <div class="flex flex-col transform translate-0">
 
-    <span class="hidden md:block"><el-button :icon="isCollapse ? Expand : Fold" class="w-16 hidden md:block"
-                                             @click="toggleSidebar"/></span>
     <el-menu
         :collapse="isCollapse"
-        class="el-menu-vertical-demo"
-        default-active="2"
+        class="!border-none"
+        default-active="1"
+        :mode = "mode"
         router
-        @close="handleClose"
-        @open="handleOpen"
     >
       <el-menu-item index="/">
         <el-icon>
-          <icon-menu/>
+          <Home/>
         </el-icon>
         <template #title>Главная</template>
       </el-menu-item>
       <el-sub-menu index="1">
         <template #title>
           <el-icon>
-            <location/>
+            <Dumbbell/>
           </el-icon>
-          <span>Главная</span>
+          <span>Тренировки</span>
         </template>
         <el-menu-item index="/workouts">
           <el-icon>
-            <icon-menu/>
+            <List />
           </el-icon>
           <template #title>Тренировки</template>
         </el-menu-item>
         <el-menu-item index="/workouts/add">
           <el-icon>
-            <icon-menu/>
+            <PlusCircle />
           </el-icon>
           <template #title>Добавить тренировку</template>
         </el-menu-item>
@@ -43,29 +58,8 @@
 
 </template>
 
-<script lang="ts" setup>
-import {ref} from 'vue'
-import {Fold, Location, Menu as IconMenu,} from '@element-plus/icons-vue'
-import {Expand} from "lucide-vue-next";
-
-const isCollapse = ref(false)
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
-
-const toggleSidebar = () => {
-  isCollapse.value = !isCollapse.value
-}
-
-</script>
 
 
 <style>
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 100%;
-  //width: 250px;
-}
+
 </style>

@@ -4,32 +4,30 @@
     <el-container>
       <el-header>
 
-        <span class="block md:hidden"><el-button type="primary"  @click="drawer = true"> open </el-button></span>
-        <el-drawer v-model="drawer" direction="ltr" title="Главная" size="40%" resizable :with-header="false">
-          <Navigation />
-        </el-drawer>
+        <Header/>
       </el-header>
       <el-container>
+        <el-aside class="hidden md:block mborder-r border-[var(--el-border-color)]">
           <Navigation class="hidden md:block"/>
-
+        </el-aside>
         <el-main>
           <slot></slot>
         </el-main>
       </el-container>
+
     </el-container>
   </div>
 </template>
 
 <script setup lang="ts">
-const route = useRoute()
-const drawer = ref(false)
+
+
 
 // Следим за изменением маршрута
-watch(
-    () => route.path,
-    () => {
-      drawer.value = false // Закрываем drawer при смене роута
-    }
-)
+
 
 </script>
+
+<style scoped>
+
+</style>
